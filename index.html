@@ -1,0 +1,247 @@
+<!DOCtype html>
+<html>
+
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js">
+
+	</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+	<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js">
+
+	</script>
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js">
+
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js">
+
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js">
+
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js">
+
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js">
+
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js">
+
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.js">
+
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify-css.js">
+
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify-html.js">
+
+	</script>
+	<link rel="stylesheet" href="https://firepad.io/releases/v1.5.9/firepad.css" />
+	<script src="https://firepad.io/releases/v1.5.9/firepad.min.js">
+
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.27.0/min/vs/loader.min.js" integrity="sha512-SExj71Cw3B9C9EE8BC/ad3AKia5zQXDj/2SM4THgkeKh5GIFZhKM/R3uclUG8YZwJrjcVhydAlIHmfNvsBCKZA=="
+	 crossorigin="anonymous" referrerpolicy="no-referrer">
+
+	</script>
+
+
+	<link rel="stylesheet" href="style/body.css">
+	<link rel="stylesheet" href="style/btn.css">
+	<link rel="stylesheet" href="style/create-modal.css">
+	<link rel="stylesheet" href="style/dropdown.css">
+	<link rel="stylesheet" href="style/editor.css">
+	<link rel="stylesheet" href="style/import.css">
+	<link rel="stylesheet" href="style/mdc-tab.css">
+	<link rel="stylesheet" href="style/monaco-editor.css">
+	<link rel="stylesheet" href="style/nav.css">
+	<link rel="stylesheet" href="style/project.css">
+	<link rel="stylesheet" href="style/root.css">
+	<link rel="stylesheet" href="style/snackbar.css">
+	<link rel="stylesheet" href="style/terminal-close.css">
+	<link rel="stylesheet" href="style/toggle.css">
+	<link rel="stylesheet" href="style/user.css">
+	<link rel="stylesheet" href="style/commit.css">
+<link rel="stylesheet" href="style/searchbox.css">
+
+
+
+</head>
+
+<body>
+ 
+	<div class="mdc-dialog create" role="alertdialog" aria-modal="true" aria-labelledby="my-dialog-title" aria-describedby="my-dialog-content"
+	 id="hick">
+		<div class="mdc-dialog__container">
+			<div class="mdc-dialog__surface">
+				<h2 class="mdc-dialog__title" id="my-dialog-title"><b> create session </b><div class="mad-select"><ul><li data-value="3 bar">Python</li></ul> <input type="hidden" name="myOptions" value="3 bar"></div></h2>
+				<div class="mdc-dialog__content" id="my-dialog-content">
+					<div style="display:flex;align-items:center;justify-content:center;color:white;">
+						<img id="user-image-create">/
+						<input type="text" name="project-name" id="project-name" autocomplete="off">
+					</div>
+					<textarea id="language-details" style="margin-left:10%;margin-top:10%;"></textarea>
+				</div>
+				<footer class="mdc-dialog__actions">
+					<button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="no">Close</button>
+				</footer>
+			</div>
+		</div>
+		<div class="mdc-dialog__scrim"></div>
+	</div>
+	<nav class="main--nav">
+		<div class="user"> <i class="material-icons mdc-button__icon" aria-hidden="true" title="menu" onclick="nav()" style="color:white;"> menu </i>
+			<img id="user-img" />
+			<p id="user-name"></p>
+		</div>
+		<div class="new-button-group">
+			<button type="button" class="mdc-button mdc-button--raised open" onclick="create()">New workspace</button>
+		</div>
+		<div class="new-button-group">
+			<button type="button" class="mdc-button mdc-button--raised open" style=" background: transparent; color: white !important; border: 1px solid grey; ">Explore</button>
+		</div> <a href="https://dash.adhvaithprasad.repl.co/">Home</a>  <a href="">Profile</a>  <a href="">Issues</a>  
+    <a href="">Talk</a>  
+    <a href="">About</a>  
+		<button onclick="logout()" class="logout">logout</button>
+	</nav>
+	<div class="dashboard--main">
+		<div class="chat-content" style="flex: 1;">
+     <header></header>
+			<div id="project"></div>
+		</div>
+	</div>
+	<div class="main--editor">
+		<main id="user_div" class="loggedin-div">
+			<header>
+
+<div class="searchbox">
+<input type="text" id="search-editor">
+<i class="mdc__button-icon material-icons" onclick="find_initial()">search</i>
+
+</div>
+
+
+      </header>
+      <div class="commit">
+<h2>changes </h2>
+<textarea name="" id="commit-message" cols="30" rows="10"></textarea>
+
+<br><br>
+
+<!-- <div class="commit-radio-grp">
+  
+<input type="radio" name="" id="merge-1">
+<label for="merge-1">merge as a <b>feature</b> commit</label>
+
+</div> -->
+
+
+
+
+<!-- <div class="commit-radio-grp">
+<input type="radio" name="" id="merge-2">
+<label for="merge-2">merge into <b>main</b> code</label></div> -->
+
+
+<br><br>
+<button class="mdc-button mdc-button--raised open"  style=" background: transparent; color: white !important; border: 1px solid grey; justify-content:center;" onclick="commit()"id="commit-button">commit</button>
+
+
+
+
+      </div>
+			<div class="mdc-dialog luck-2" role="alertdialog" aria-modal="true" aria-labelledby="my-dialog-title" aria-describedby="my-dialog-content" id="hick">
+				<div class="mdc-dialog__container">
+					<div class="mdc-dialog__surface">
+						<h2 class="mdc-dialog__title" id="my-dialog-title"><b> Firestudio </b></h2>
+						<div class="mdc-dialog__content" id="my-dialog-content">firestudio is a Cloud based (C9) editor for developing HTML applications. Firestudio strictly adheres to google's material design guidelines. Firestudio has a very powerful UI making it easy to develop applications for beginners as well as powerful features for experienced developers.Firestudio is a client side editor ie: firestudio does not collect any user data.
+							<br>
+							<br>
+							<h2 class="mdc-dialog__title" id="my-dialog-title"><b> Keyboard shortcuts ⌨️ </b></h2> 
+							<br>
+							<br> <b>Tip : </b> Click on the editor once before using the Shortcuts in case of errors
+							<br>
+							<br>Settings pallette : <b>Ctrl</b> + <b> ,</b> 
+							<br>Find and replace : <b>Ctrl</b> + <b>F</b> 
+							<br>To lowercase : <b>Ctrl</b> + <b>Shift</b> + <b> U</b> 
+							<br>Undo : <b>Ctrl</b> + <b>Z</b> 
+							<br>Redo : <b>Ctrl</b> + <b>Shift</b> + <b> Z </b> 
+							<br>Go to line : <b>Ctrl</b> + <b>L</b> 
+							<br>Comment : <b>Ctrl</b> + <b>/ </b> 
+							<br>
+						</div>
+						<footer class="mdc-dialog__actions">
+							<button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="no">Close</button>
+						</footer>
+					</div>
+				</div>
+				<div class="mdc-dialog__scrim"></div>
+			</div>
+			<div class="many">
+				<div class="nav"><i class="material-icons mdc-button__icon run-icon" aria-hidden="true" title="menu" onclick="run()" id="run" style="margin-top:8px;"> play_arrow </i><i class="material-icons mdc-button__icon" aria-hidden="true" title="menu" onclick="find()"> search </i><i class="material-icons mdc-button__icon" aria-hidden="true" title="menu" onclick="r()"> file_download </i><i class="material-icons mdc-button__icon" aria-hidden="true" title="menu" onclick="beautify()"> flare </i><i class="material-icons mdc-button__icon" aria-hidden="true" title="menu" onclick="f('.luck-2')"> help_center </i>  <i class="material-icons mdc-button__icon" aria-hidden="true" title="menu" onclick="open_commit_pane()"> commit </i> 
+					<img src="" alt="" id="user-image-editor">
+				</div>
+				<div id="firepad-container">
+					<div class="svelte5" style="flex:1;">
+						<div class="mdc-tab-bar-1" role="tablist">
+							<div class="mdc-tab-scroller">
+								<div class="mdc-tab-scroller__scroll-area mdc-tab-scroller__scroll-area--scroll" style="margin-bottom: 0px;">
+									<div class="mdc-tab-scroller__scroll-content">
+										<div class="jkl">
+											<button class="mdc-tab mdc-ripple-upgraded" role="tab" aria-selected="false" tabindex="-1" id="mdc-tab-1" style="--mdc-ripple-fg-size:392px; --mdc-ripple-fg-scale:1.69833; --mdc-ripple-fg-translate-start:293px, -178.5px; --mdc-ripple-fg-translate-end:130.992px, -172px;"> <span class="mdc-tab__content"> <span class="mdc-tab__text-label">Input</span> </span> <span class="mdc-tab-indicator"> <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline" style=""></span> </span> <span class="mdc-tab__ripple"></span> 
+											</button>
+											<button class="mdc-tab mdc-ripple-upgraded mdc-tab--active" role="tab" aria-selected="true" tabindex="0" id="mdc-tab-2" style="--mdc-ripple-fg-size:427px; --mdc-ripple-fg-scale:1.69472; --mdc-ripple-fg-translate-start:-9.48438px, -188px; --mdc-ripple-fg-translate-end:142.516px, -189.5px;"> <span class="mdc-tab__content"> <span class="mdc-tab__text-label">compile output</span> </span> <span class="mdc-tab-indicator mdc-tab-indicator--active"> <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline" style=""></span> </span> <span class="mdc-tab__ripple"></span> 
+											</button>
+										</div>
+										<div class="icon-group"> <i class="material-icons mdc-button__icon k t" aria-hidden="true" title="menu" onclick="increase()"> expand_less </i>  <i class="material-icons mdc-button__icon k j" aria-hidden="true" title="menu" onclick="rm()"> close </i>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="content-1 ">
+							<div class="mzist">
+								<textarea id="input" spellcheck="false"></textarea>
+							</div>
+						</div>
+						<div class="content-1 content--active-1">
+							<div class="mzist">
+								<textarea readonly="" id="output"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="snackbar">
+				<p id="snackbar-text"></p>
+			</div>
+		</main>
+	</div>
+
+
+
+	<script src="scripts/config.js"></script>
+	<script src="scripts/auth-check-true.js"></script>
+	<script src="scripts/auth.js"></script>
+	<script src="scripts/beautify.js"></script>
+  
+	<script src="scripts/create.js"></script>
+	<script src="scripts/find.js"></script>
+	<script src="scripts/getref.js"></script>
+  <script src="scripts/commit.js"></script>
+	<script src="scripts/init.js"></script>
+	<script src="scripts/modal.js"></script>
+	<script src="scripts/nav.js"></script>
+	<script src="scripts/terminal.js"></script>
+	<script src="scripts/dropdown.js"></script>
+<script src="scripts/searchbox.js"></script>
+
+
+
+  
+</body>
+
+</html>

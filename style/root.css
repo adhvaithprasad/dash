@@ -1,0 +1,25 @@
+:root{
+  --mdc-theme-primary:#2196f3 !important;
+  --prima-nocta:#0f1625;
+  --prima-nocta-lighter:#0b101c;
+  --prima-nocta-darker:#0b101c;
+  font-family: 'Poppins', sans-serif !important;
+ 
+--b-2:#3573a5 !important;
+--height: calc(100vh - 55px);
+--h-height: calc(100vh - 55px);
+--terminal-text: rgb(204, 204, 204);
+--mdc-text-primary: rgb(238, 235, 235);
+}
+.main--editor{
+  display: none;
+}
+.dashboard--main{
+  display: none;
+}
+.many{
+  display: flex;
+}
+.grp{
+  display: flex;
+}

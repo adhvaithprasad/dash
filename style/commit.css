@@ -2,9 +2,11 @@
   z-index: 10;
   position: absolute;
   width: 300px;
-  height: 80%;
-  top: 5%;
-  left: 5%;
+  height: calc(100% - 20px);
+  word-break: break-word;
+  overflow-y:scroll;
+  top: 0%;
+  right: 0%;
   color: white;
   background: var(--prima-nocta-darker);
   display: none;
@@ -23,4 +25,16 @@
   background: none;
   padding: 10px;
   border: 1px solid rgba(128, 128, 128, 0.507);
+}
+.inner-wrapper{
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+   border: 1px solid rgba(128, 128, 128, 0.507);
+}
+.line{
+  width: 2px;
+  height: 70px;
+  margin-left: 40px;
+  background: white;
 }
